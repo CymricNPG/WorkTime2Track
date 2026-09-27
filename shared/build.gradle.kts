@@ -35,8 +35,19 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.kover)
     alias(libs.plugins.sqlDelight)
     alias(libs.plugins.koin.compiler)
+}
+
+kover {
+    reports {
+        total {
+            xml {
+                xmlFile = layout.buildDirectory.file("reports/kover/report.xml")
+            }
+        }
+    }
 }
 
 val generateAppBuildInfo = tasks.register<GenerateAppBuildInfo>("generateAppBuildInfo") {

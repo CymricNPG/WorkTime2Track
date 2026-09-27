@@ -7,6 +7,8 @@
 - [ ] back sollte nicht discard machen -> Warnung anzeigen?
 - [ ] Fehler Booking end 23:04 must be after start 23:04 on 2026-08-27
 - [ ] Andere Icons für einen Task/Pause
+- [ ] Tag abschliessen Button: rot=keine Buchung, grün=Buchung vorhanden, aber noch nicht abgeschlossen, weiss=Tag
+  abgeschlossen
 
 ## Code review findings — 2026-08-22
 

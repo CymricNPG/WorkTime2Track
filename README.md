@@ -33,6 +33,15 @@ Use the run button in your IDE's editor gutter, or run tests using Gradle tasks:
 - Android tests: `./gradlew :shared:testAndroidHostTest`
 - Desktop tests: `./gradlew :shared:jvmTest`
 
+### SonarQube analysis
+
+Create a local `sonar.local.properties` file containing `sonar.token=<your-token>`. This file is ignored by Git and must never be committed.
+
+- Run tests and generate the Kover XML coverage report: `./gradlew :shared:koverXmlReport`
+- Compile the applications, generate coverage, and upload the analysis: `./gradlew sonar`
+
+The analysis is published to the `WorkTime2Track` project at `http://gondor:9000`. This connection uses unencrypted HTTP and should only be used on a trusted network.
+
 ### Architecture
 
 - [Architecture decisions and compliance review](docs/architecture-decisions.md)
