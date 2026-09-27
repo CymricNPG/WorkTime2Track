@@ -1,0 +1,144 @@
+-- A previous non-transactional desktop attempt may have left replacement
+-- tables behind after failing on legacy data. They never contain committed data.
+DROP TABLE IF EXISTS timeEntity_new;
+DROP TABLE IF EXISTS taskEntity_new;
+DROP TABLE IF EXISTS projectEntity_new;
+DROP TABLE IF EXISTS dailyWorkTimeEntity_new;
+
+CREATE TABLE projectEntity_new (
+    id TEXT NOT NULL PRIMARY KEY CHECK (trim(id) != ''),
+    name TEXT NOT NULL CHECK (trim(name) != ''),
+    closed INTEGER AS kotlin.Boolean NOT NULL DEFAULT 0
+);
+
+CREATE TABLE taskEntity_new (
+    id TEXT NOT NULL PRIMARY KEY CHECK (trim(id) != ''),
+    name TEXT NOT NULL CHECK (trim(name) != ''),
+    freeTime INTEGER AS kotlin.Boolean NOT NULL DEFAULT 0,
+    closed INTEGER AS kotlin.Boolean NOT NULL DEFAULT 0,
+    projectId TEXT,
+    FOREIGN KEY (projectId) REFERENCES projectEntity_new(id)
+);
+
+CREATE TABLE timeEntity_new (
+    id TEXT NOT NULL PRIMARY KEY CHECK (trim(id) != ''),
+    taskId TEXT NOT NULL,
+    date TEXT NOT NULL,
+    start TEXT NOT NULL,
+    end TEXT,
+    description TEXT NOT NULL,
+    FOREIGN KEY (taskId) REFERENCES taskEntity_new(id),
+    CHECK (end IS NULL OR start < end)
+);
+
+CREATE TABLE dailyWorkTimeEntity_new (
+    id TEXT NOT NULL PRIMARY KEY CHECK (trim(id) != ''),
+    date TEXT NOT NULL,
+    minutes INTEGER NOT NULL CHECK (minutes BETWEEN 0 AND 1440),
+    breakMinutes INTEGER NOT NULL DEFAULT 0 CHECK (breakMinutes >= 0)
+);
+
+-- Legacy project names were not unique. The earliest valid row is canonical;
+-- dependent tasks are remapped to it. Rows without a usable identity are omitted.
+CREATE TEMP TABLE migration_project_map AS
+SELECT
+    source.id AS oldId,
+    (
+        SELECT canonical.id
+        FROM projectEntity AS canonical
+        WHERE trim(canonical.id) != ''
+          AND trim(canonical.name) != ''
+          AND canonical.name = source.name
+        ORDER BY canonical.rowid
+        LIMIT 1
+    ) AS newId
+FROM projectEntity AS source
+WHERE trim(source.id) != ''
+  AND trim(source.name) != '';
+
+INSERT INTO projectEntity_new(id, name, closed)
+SELECT id, name, closed
+FROM projectEntity
+WHERE id IN (SELECT DISTINCT newId FROM migration_project_map);
+
+-- Resolve projects before task deduplication because two duplicate projects can
+-- contain tasks that become duplicates after their project IDs are merged.
+CREATE TEMP TABLE migration_task_candidates AS
+SELECT
+    task.rowid AS legacyRowId,
+    task.id AS id,
+    task.name AS name,
+    task.freeTime AS freeTime,
+    task.closed AS closed,
+    project.newId AS projectId
+FROM taskEntity AS task
+LEFT JOIN migration_project_map AS project ON project.oldId = task.projectId
+WHERE trim(task.id) != ''
+  AND trim(task.name) != ''
+  AND (task.projectId IS NULL OR project.newId IS NOT NULL);
+
+CREATE TEMP TABLE migration_task_map AS
+SELECT
+    source.id AS oldId,
+    (
+        SELECT canonical.id
+        FROM migration_task_candidates AS canonical
+        WHERE canonical.name = source.name
+          AND canonical.projectId IS source.projectId
+        ORDER BY canonical.legacyRowId
+        LIMIT 1
+    ) AS newId
+FROM migration_task_candidates AS source;
+
+INSERT INTO taskEntity_new(id, name, freeTime, closed, projectId)
+SELECT id, name, freeTime, closed, projectId
+FROM migration_task_candidates
+WHERE id IN (SELECT DISTINCT newId FROM migration_task_map);
+
+INSERT INTO timeEntity_new(id, taskId, date, start, end, description)
+SELECT time.id, task.newId, time.date, time.start, time.end, time.description
+FROM timeEntity AS time
+JOIN migration_task_map AS task ON task.oldId = time.taskId
+WHERE trim(time.id) != ''
+  AND (time.end IS NULL OR time.start < time.end);
+
+INSERT INTO dailyWorkTimeEntity_new(id, date, minutes, breakMinutes)
+SELECT
+    id,
+    date,
+    CASE
+        WHEN minutes < 0 THEN 0
+        WHEN minutes > 1440 THEN 1440
+        ELSE minutes
+    END,
+    CASE WHEN breakMinutes < 0 THEN 0 ELSE breakMinutes END
+FROM dailyWorkTimeEntity
+WHERE trim(id) != '';
+
+DROP TABLE migration_task_map;
+DROP TABLE migration_task_candidates;
+DROP TABLE migration_project_map;
+
+DROP TABLE timeEntity;
+DROP TABLE taskEntity;
+DROP TABLE projectEntity;
+DROP TABLE dailyWorkTimeEntity;
+
+ALTER TABLE projectEntity_new RENAME TO projectEntity;
+ALTER TABLE taskEntity_new RENAME TO taskEntity;
+ALTER TABLE timeEntity_new RENAME TO timeEntity;
+ALTER TABLE dailyWorkTimeEntity_new RENAME TO dailyWorkTimeEntity;
+
+CREATE UNIQUE INDEX idx_project_name ON projectEntity(name);
+
+CREATE UNIQUE INDEX idx_task_name_project
+ON taskEntity(name, projectId)
+WHERE projectId IS NOT NULL;
+
+CREATE UNIQUE INDEX idx_task_name_without_project
+ON taskEntity(name)
+WHERE projectId IS NULL;
+
+CREATE INDEX idx_time_date ON timeEntity(date);
+
+CREATE UNIQUE INDEX idx_daily_work_time_date ON dailyWorkTimeEntity(date);

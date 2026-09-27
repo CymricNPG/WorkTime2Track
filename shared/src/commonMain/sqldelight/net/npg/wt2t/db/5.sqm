@@ -1,0 +1,27 @@
+-- Zero-minute bookings are valid point-in-time records, for example when a
+-- user starts and stops a booking in the same displayed minute.
+DROP INDEX idx_active_time_date;
+
+CREATE TABLE timeEntity_new (
+    id TEXT NOT NULL PRIMARY KEY CHECK (trim(id) != ''),
+    taskId TEXT NOT NULL,
+    date TEXT NOT NULL,
+    start TEXT NOT NULL,
+    end TEXT,
+    description TEXT NOT NULL,
+    FOREIGN KEY (taskId) REFERENCES taskEntity(id),
+    CHECK (end IS NULL OR start <= end)
+);
+
+INSERT INTO timeEntity_new(id, taskId, date, start, end, description)
+SELECT id, taskId, date, start, end, description
+FROM timeEntity;
+
+DROP TABLE timeEntity;
+ALTER TABLE timeEntity_new RENAME TO timeEntity;
+
+CREATE INDEX idx_time_date ON timeEntity(date);
+
+CREATE UNIQUE INDEX idx_active_time_date
+ON timeEntity(date)
+WHERE end IS NULL;

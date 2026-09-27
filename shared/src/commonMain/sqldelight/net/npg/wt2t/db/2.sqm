@@ -1,0 +1,13 @@
+-- The legacy schema allowed several target work-time rows for one date. Keep the
+-- most recently inserted physical row so migration follows last-write-wins.
+DELETE FROM dailyWorkTimeEntity
+WHERE rowid NOT IN (
+    SELECT MAX(rowid)
+    FROM dailyWorkTimeEntity
+    GROUP BY date
+);
+
+DROP INDEX idx_daily_work_time_date;
+
+CREATE UNIQUE INDEX idx_daily_work_time_date
+ON dailyWorkTimeEntity(date);

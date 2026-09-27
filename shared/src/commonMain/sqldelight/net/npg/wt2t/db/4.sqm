@@ -1,0 +1,35 @@
+-- Keep the lexicographically smallest identifier when legacy data contains
+-- active bookings with the same start. A zero-length booking cannot be kept.
+DELETE FROM timeEntity
+WHERE end IS NULL
+  AND EXISTS (
+      SELECT 1
+      FROM timeEntity AS duplicate
+      WHERE duplicate.date = timeEntity.date
+        AND duplicate.end IS NULL
+        AND duplicate.start = timeEntity.start
+        AND duplicate.id < timeEntity.id
+  );
+
+-- Preserve distinct legacy active bookings by closing each older booking at
+-- the next active start. The latest booking remains active for that date.
+UPDATE timeEntity
+SET end = (
+    SELECT MIN(newer.start)
+    FROM timeEntity AS newer
+    WHERE newer.date = timeEntity.date
+      AND newer.end IS NULL
+      AND newer.start > timeEntity.start
+)
+WHERE end IS NULL
+  AND EXISTS (
+      SELECT 1
+      FROM timeEntity AS newer
+      WHERE newer.date = timeEntity.date
+        AND newer.end IS NULL
+        AND newer.start > timeEntity.start
+  );
+
+CREATE UNIQUE INDEX idx_active_time_date
+ON timeEntity(date)
+WHERE end IS NULL;
