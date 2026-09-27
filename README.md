@@ -1,3 +1,7 @@
+# WorkTime2Track
+
+WorkTime2Track is a local time-tracking application for a single user on Android and desktop. It lets users organize work into projects and tasks, record and adjust time entries, add notes, set daily target hours, and review worked time and overtime by day, project, or task. The application is designed for quick task switching, supports free-time entries that do not count as working time, and can generate reports for selected periods.
+
 This is a Kotlin Multiplatform project targeting Android, Desktop (JVM).
 
 * [/shared](./shared/src) is for code that will be shared across your Compose Multiplatform applications. It contains several subfolders:
