@@ -1,0 +1,1084 @@
+{
+  "projects": [
+    {
+      "id": "0b28ec91-89c0-45a0-b394-001a332cd3f1",
+      "name": "First Project"
+    },
+    {
+      "id": "0c7b6c17-71c0-43d6-9e1a-084942eb801e",
+      "name": "Second Project"
+    },
+    {
+      "id": "7f6a5ccf-cb65-4d99-8dfa-9efdf9782b4e",
+      "name": "SysAdmin"
+    },
+    {
+      "id": "66483967-89f4-4af4-a75f-01e999cdfd92",
+      "name": "Organisation"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "8c7d41ed-136b-4eb7-8f60-43f9ea5e0152",
+      "name": "Bugfixes ",
+      "projectId": "0b28ec91-89c0-45a0-b394-001a332cd3f1"
+    },
+    {
+      "id": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "name": "Tasks",
+      "projectId": "0c7b6c17-71c0-43d6-9e1a-084942eb801e"
+    },
+    {
+      "id": "ea7db7c3-7c56-4e13-ae8c-7deb3935cab8",
+      "name": "Tagesplanung",
+      "projectId": "0c7b6c17-71c0-43d6-9e1a-084942eb801e"
+    },
+    {
+      "id": "18849227-5317-421c-93d9-b665c0c77eab",
+      "name": "Tools",
+      "projectId": "7f6a5ccf-cb65-4d99-8dfa-9efdf9782b4e"
+    },
+    {
+      "id": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "name": "Pause",
+      "freeTime": true
+    },
+    {
+      "id": "0f9ebb9d-de47-4d77-912b-36732df499a4",
+      "name": "Fortbildung",
+      "projectId": "66483967-89f4-4af4-a75f-01e999cdfd92"
+    },
+    {
+      "id": "4408f625-4ccd-4fd2-a7c8-8e763ebc0721",
+      "name": "Subproject",
+      "projectId": "0c7b6c17-71c0-43d6-9e1a-084942eb801e"
+    },
+    {
+      "id": "aae66170-1b5c-4403-a993-11d537d573fd",
+      "name": "Meetings ",
+      "projectId": "66483967-89f4-4af4-a75f-01e999cdfd92"
+    }
+  ],
+  "times": [
+    {
+      "id": "9481b496-d092-4ace-80e9-3fdfd8ef0b89",
+      "taskId": "ea7db7c3-7c56-4e13-ae8c-7deb3935cab8",
+      "date": "2026-08-21",
+      "start": "09:21",
+      "end": "09:23"
+    },
+    {
+      "id": "2f3365ab-03a2-44c4-a092-c3cea1d8f8c5",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-08-21",
+      "start": "09:23",
+      "end": "10:34",
+      "description": [
+        "Model analyse"
+      ]
+    },
+    {
+      "id": "15cdb314-9521-4361-8d9f-a843c7155c8a",
+      "taskId": "18849227-5317-421c-93d9-b665c0c77eab",
+      "date": "2026-08-21",
+      "start": "10:34",
+      "end": "10:44",
+      "description": [
+        "released Spring boot"
+      ]
+    },
+    {
+      "id": "5075eb26-4190-442f-af03-8824d42f5bf9",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-08-21",
+      "start": "10:44",
+      "end": "12:33",
+      "description": [
+        "Implement model tree "
+      ]
+    },
+    {
+      "id": "01d1d31f-a08b-4873-b63d-45dc9bf955f6",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-08-21",
+      "start": "12:33",
+      "end": "13:12"
+    },
+    {
+      "id": "0709a6e6-aa82-449c-a65b-3005c425c6fd",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-08-21",
+      "start": "13:12",
+      "end": "17:34"
+    },
+    {
+      "id": "f9a1eeb8-dc2e-46d1-a2d7-5b920ef9ffcd",
+      "taskId": "ea7db7c3-7c56-4e13-ae8c-7deb3935cab8",
+      "date": "2026-08-24",
+      "start": "09:08",
+      "end": "09:38"
+    },
+    {
+      "id": "06c0a904-d487-44e5-9901-637493aae715",
+      "taskId": "0f9ebb9d-de47-4d77-912b-36732df499a4",
+      "date": "2026-08-24",
+      "start": "09:38",
+      "end": "09:41"
+    },
+    {
+      "id": "01a5aa08-96ad-480f-bfaf-4f9fbcc2edbc",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-08-24",
+      "start": "09:41",
+      "end": "11:30",
+      "description": [
+        "Look up!"
+      ]
+    },
+    {
+      "id": "f6e0aa8b-8c5d-42d7-8973-63c16019b265",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-08-24",
+      "start": "11:30",
+      "end": "12:15"
+    },
+    {
+      "id": "7e57cd33-c667-49af-9b6e-20333b5cee22",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-08-24",
+      "start": "12:15",
+      "end": "16:04"
+    },
+    {
+      "id": "03f0b557-cbe7-446e-92a8-0ae170b06b38",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-08-24",
+      "start": "16:04",
+      "end": "17:31"
+    },
+    {
+      "id": "41c83743-4f87-401d-a0c6-6d37199a2fbd",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-08-25",
+      "start": "09:32",
+      "end": "11:45",
+      "description": [
+        "Quality "
+      ]
+    },
+    {
+      "id": "9923b108-3dbf-4084-92b0-e85d3030a539",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-08-25",
+      "start": "11:45",
+      "end": "12:05"
+    },
+    {
+      "id": "604b33b2-8013-4226-a300-eb80d679d597",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-08-25",
+      "start": "12:05",
+      "end": "18:18"
+    },
+    {
+      "id": "37da4b17-31d1-4093-b2a8-73c815c60192",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-08-26",
+      "start": "09:41",
+      "end": "16:15"
+    },
+    {
+      "id": "ba8bc044-2cea-4747-ba58-a899456b5eea",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-08-26",
+      "start": "17:23",
+      "end": "19:26"
+    },
+    {
+      "id": "8c90d19f-663e-4cca-aaf6-9b4e4dcee35d",
+      "taskId": "ea7db7c3-7c56-4e13-ae8c-7deb3935cab8",
+      "date": "2026-08-27",
+      "start": "09:24",
+      "end": "11:56"
+    },
+    {
+      "id": "067db37a-30e0-41ae-93f5-0369a2b6ca1d",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-08-27",
+      "start": "11:56",
+      "end": "13:01"
+    },
+    {
+      "id": "355d3838-39c9-4a9e-b8cc-993515352f83",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-08-27",
+      "start": "13:01",
+      "end": "18:07"
+    },
+    {
+      "id": "9b951867-a6be-46d0-a055-28fe7bc9885b",
+      "taskId": "ea7db7c3-7c56-4e13-ae8c-7deb3935cab8",
+      "date": "2026-08-28",
+      "start": "09:06",
+      "end": "09:49"
+    },
+    {
+      "id": "c17b774a-2701-42b2-a8a1-0a3fdd4dfb7c",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-08-28",
+      "start": "09:49",
+      "end": "12:02"
+    },
+    {
+      "id": "c03cab68-222f-499e-b042-496feba74e01",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-08-28",
+      "start": "12:02",
+      "end": "13:03"
+    },
+    {
+      "id": "ab55b49c-ac44-4a0d-9ea3-3d70c12ff4d7",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-08-28",
+      "start": "13:03",
+      "end": "16:41"
+    },
+    {
+      "id": "d9d23bab-9132-4c80-b2bc-d6b8507f75ee",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-08-28",
+      "start": "16:41",
+      "end": "16:59"
+    },
+    {
+      "id": "946f34e5-aeb5-4067-ac62-52fd89ce8e91",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-08-28",
+      "start": "16:59",
+      "end": "18:52"
+    },
+    {
+      "id": "13b63b9c-cc4c-4dd4-b862-fe132db8ac45",
+      "taskId": "ea7db7c3-7c56-4e13-ae8c-7deb3935cab8",
+      "date": "2026-08-31",
+      "start": "09:41",
+      "end": "18:15"
+    },
+    {
+      "id": "03607df5-deac-446d-91c1-172aac176b24",
+      "taskId": "ea7db7c3-7c56-4e13-ae8c-7deb3935cab8",
+      "date": "2026-09-01",
+      "start": "09:07",
+      "end": "09:09"
+    },
+    {
+      "id": "f2d305d8-d137-4dbf-a5e2-f57c442df6ac",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-01",
+      "start": "09:09",
+      "end": "11:34"
+    },
+    {
+      "id": "b5bd535a-13f1-4348-b490-9784389280ce",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-09-01",
+      "start": "11:34",
+      "end": "12:16"
+    },
+    {
+      "id": "271e1cff-d62e-4cdb-8919-931e8f531011",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-01",
+      "start": "12:16",
+      "end": "18:19"
+    },
+    {
+      "id": "8a50ad46-8dd0-4028-836e-6bee1dd3bff8",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-02",
+      "start": "10:02",
+      "end": "12:03"
+    },
+    {
+      "id": "15bf033f-155c-452a-b4a0-b8baa0ea540c",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-09-02",
+      "start": "12:03",
+      "end": "13:20"
+    },
+    {
+      "id": "fb6b68db-41d0-40d6-a70f-11cab538ff90",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-02",
+      "start": "13:20",
+      "end": "19:03"
+    },
+    {
+      "id": "c4b8f9f7-fd16-49d7-b25f-590e721ec3aa",
+      "taskId": "ea7db7c3-7c56-4e13-ae8c-7deb3935cab8",
+      "date": "2026-09-03",
+      "start": "09:06",
+      "end": "16:11"
+    },
+    {
+      "id": "15b788cd-7019-4173-aec8-c12da193e514",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-09-03",
+      "start": "16:11",
+      "end": "16:12"
+    },
+    {
+      "id": "b51e0d78-061b-44d7-9254-73f5df1ccf25",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-04",
+      "start": "09:27",
+      "end": "12:04"
+    },
+    {
+      "id": "ba65fd5b-f4fc-4c87-b6d0-a6f1200a7615",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-09-04",
+      "start": "12:04",
+      "end": "13:03"
+    },
+    {
+      "id": "aff1c808-1042-4c11-b784-152a196abb14",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-04",
+      "start": "13:03",
+      "end": "18:13"
+    },
+    {
+      "id": "60bad9a9-19c2-416e-92ca-ff33a2362628",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-04",
+      "start": "18:13",
+      "end": "18:13"
+    },
+    {
+      "id": "6158933d-429c-485b-9d3c-1f7ae2c12c45",
+      "taskId": "ea7db7c3-7c56-4e13-ae8c-7deb3935cab8",
+      "date": "2026-09-07",
+      "start": "09:27",
+      "end": "10:38"
+    },
+    {
+      "id": "23693e59-24ea-4a93-9715-1fce1e7cbc92",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-09-07",
+      "start": "10:38",
+      "end": "10:55"
+    },
+    {
+      "id": "98506069-0ba4-4336-b260-a33ede9f7f50",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-07",
+      "start": "10:55",
+      "end": "12:34"
+    },
+    {
+      "id": "cd63785c-c1c8-4549-bbf3-6757ecc02a45",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-09-07",
+      "start": "12:34",
+      "end": "13:29"
+    },
+    {
+      "id": "b463b341-6af3-4933-9865-879ee8dd1ada",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-07",
+      "start": "13:29",
+      "end": "18:21"
+    },
+    {
+      "id": "549a8b9f-c24d-40d0-a97b-e1e21d809e7f",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-08",
+      "start": "09:30",
+      "end": "11:40"
+    },
+    {
+      "id": "e3c1d4ea-9f84-4dce-88fe-e7181b9c469d",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-09-08",
+      "start": "11:40",
+      "end": "13:11"
+    },
+    {
+      "id": "64cd56c5-eed9-4e14-92c4-42188d1ac880",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-08",
+      "start": "13:11",
+      "end": "15:21"
+    },
+    {
+      "id": "b626fdce-f0c8-42c7-abd0-4b19ee5ffc68",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-09-08",
+      "start": "15:21",
+      "end": "17:41"
+    },
+    {
+      "id": "6c3d07fe-8707-48ae-a72a-9dcb8a9505bd",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-08",
+      "start": "17:41",
+      "end": "18:33"
+    },
+    {
+      "id": "b5b5cc96-98a1-43c5-86c4-8fc06841f8b5",
+      "taskId": "ea7db7c3-7c56-4e13-ae8c-7deb3935cab8",
+      "date": "2026-09-09",
+      "start": "09:23",
+      "end": "11:30"
+    },
+    {
+      "id": "cb33c322-ca21-418d-b825-13908a60e1fd",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-09-09",
+      "start": "11:30",
+      "end": "12:35"
+    },
+    {
+      "id": "927a35b6-7389-404e-979d-0afd55c59458",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-09",
+      "start": "12:35",
+      "end": "17:15"
+    },
+    {
+      "id": "04b793b0-9260-45c4-867e-dce571ed6256",
+      "taskId": "ea7db7c3-7c56-4e13-ae8c-7deb3935cab8",
+      "date": "2026-09-10",
+      "start": "09:27",
+      "end": "11:32"
+    },
+    {
+      "id": "91b686fc-cf7f-4690-96e0-994a32022e13",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-09-10",
+      "start": "11:32",
+      "end": "12:30"
+    },
+    {
+      "id": "5d1ffba4-41b8-44b9-ac18-748cc1afc23e",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-10",
+      "start": "12:30",
+      "end": "16:36"
+    },
+    {
+      "id": "2d938c75-5bac-4601-a5db-5b6999949511",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-11",
+      "start": "09:52",
+      "end": "11:40"
+    },
+    {
+      "id": "328b9718-3944-46b8-b9a9-597d1577a8f0",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-09-11",
+      "start": "11:40",
+      "end": "13:00"
+    },
+    {
+      "id": "2dc57013-8c58-4b03-b0d8-084e748e12c7",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-11",
+      "start": "13:00",
+      "end": "18:48"
+    },
+    {
+      "id": "ecb6a932-5e80-450c-abf9-785fa63e4956",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-14",
+      "start": "09:55",
+      "end": "12:05"
+    },
+    {
+      "id": "52bc8f9f-6976-4d46-8c08-86ceaa65d7f1",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-09-14",
+      "start": "12:05",
+      "end": "13:15"
+    },
+    {
+      "id": "318f0511-48e4-449a-8449-bdc87f6e977f",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-14",
+      "start": "13:15",
+      "end": "18:48"
+    },
+    {
+      "id": "b87dbe04-1cc4-4d09-8b70-b78942d0b5ec",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-14",
+      "start": "19:13",
+      "end": "20:09"
+    },
+    {
+      "id": "eba05420-7707-4c09-aefc-932125a72d74",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-16",
+      "start": "08:32",
+      "end": "12:00"
+    },
+    {
+      "id": "d57e9f97-9b56-4629-bd35-977957171505",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-16",
+      "start": "12:45",
+      "end": "18:37"
+    },
+    {
+      "id": "68c2f7e9-ad69-415f-abc0-953e0f31a090",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-15",
+      "start": "09:49",
+      "end": "12:38"
+    },
+    {
+      "id": "8e1cbb32-4219-4a05-b7dc-47f5d93288f7",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-15",
+      "start": "12:38",
+      "end": "18:24"
+    },
+    {
+      "id": "6dae25ce-8b63-41c5-99c6-67742fb40cf4",
+      "taskId": "ea7db7c3-7c56-4e13-ae8c-7deb3935cab8",
+      "date": "2026-09-17",
+      "start": "09:14",
+      "end": "11:33"
+    },
+    {
+      "id": "2a8579f0-607d-439e-acad-d9e7bd90a5dd",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-09-17",
+      "start": "11:33",
+      "end": "12:28"
+    },
+    {
+      "id": "79b101d1-a705-4bc3-9492-d072f079d027",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-17",
+      "start": "12:28",
+      "end": "17:59"
+    },
+    {
+      "id": "091ad6a7-e393-49f1-8807-34614fd99538",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-18",
+      "start": "09:12",
+      "end": "18:20"
+    },
+    {
+      "id": "3f44042e-9ad3-4346-9c96-4adc894992c5",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-21",
+      "start": "09:31",
+      "end": "12:48"
+    },
+    {
+      "id": "ad21245f-9944-4ef3-956a-ff8092f77711",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-09-21",
+      "start": "12:48",
+      "end": "13:25"
+    },
+    {
+      "id": "e495b0e2-0238-4f4d-9849-2bbc1d950a8c",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-21",
+      "start": "13:25",
+      "end": "18:52"
+    },
+    {
+      "id": "b5f4efa0-15c4-4de1-a6d1-1ef47599d027",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-22",
+      "start": "08:56",
+      "end": "08:57"
+    },
+    {
+      "id": "22a48340-864c-4e4e-9cfd-25c30a9fb35c",
+      "taskId": "4408f625-4ccd-4fd2-a7c8-8e763ebc0721",
+      "date": "2026-09-22",
+      "start": "08:57",
+      "end": "09:37"
+    },
+    {
+      "id": "09ceadb6-dd22-4a39-91b2-031a42d36537",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-09-22",
+      "start": "09:37",
+      "end": "10:04"
+    },
+    {
+      "id": "7fbccdd0-2ead-4e93-8959-6171a1c98c89",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-22",
+      "start": "10:04",
+      "end": "12:13"
+    },
+    {
+      "id": "0a7aa52b-7866-4a62-ac9c-c33acbd61d2b",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-09-22",
+      "start": "12:13",
+      "end": "13:17"
+    },
+    {
+      "id": "b2755207-9479-4108-a28b-0fdfb296d3bf",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-22",
+      "start": "13:17",
+      "end": "15:43"
+    },
+    {
+      "id": "3b2586ac-6b22-4296-b074-1dc3881cfb53",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-09-22",
+      "start": "15:43",
+      "end": "16:56"
+    },
+    {
+      "id": "7928732a-8a79-4e2f-8843-b7116e6ccf9d",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-22",
+      "start": "16:56"
+    },
+    {
+      "id": "6ba15d78-0d94-4c6b-97d1-c0f0bad0553d",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-23",
+      "start": "09:24",
+      "end": "11:28"
+    },
+    {
+      "id": "0dd207d5-bcf3-4e73-9576-d5db835f8c93",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-09-23",
+      "start": "11:28",
+      "end": "12:49"
+    },
+    {
+      "id": "9f1698f5-6e6b-43c9-a56c-003b2725fbc2",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-23",
+      "start": "12:49",
+      "end": "18:37"
+    },
+    {
+      "id": "76725d55-4e39-406a-b984-e753a19470fd",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-24",
+      "start": "09:10",
+      "end": "11:36"
+    },
+    {
+      "id": "cdf3e3a4-c4f2-49b9-b6b5-6ed2bf5bd699",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-09-24",
+      "start": "11:36",
+      "end": "12:38"
+    },
+    {
+      "id": "7c376034-92ec-4bb6-9b3c-435ba51cdec9",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-24",
+      "start": "12:38",
+      "end": "18:26"
+    },
+    {
+      "id": "3f23dc79-822e-47cc-b34b-08375941cf18",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-25",
+      "start": "09:50",
+      "end": "12:01"
+    },
+    {
+      "id": "f0f03fc9-5749-413d-a556-979c21d67dd4",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-09-25",
+      "start": "12:01",
+      "end": "12:54"
+    },
+    {
+      "id": "e67013e2-6138-40c4-9484-c34cb53307ef",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-25",
+      "start": "12:54",
+      "end": "19:22"
+    },
+    {
+      "id": "17852775-6642-4454-92b5-81dd0a69da89",
+      "taskId": "8c7d41ed-136b-4eb7-8f60-43f9ea5e0152",
+      "date": "2026-09-28",
+      "start": "08:37",
+      "end": "11:59"
+    },
+    {
+      "id": "1834278c-b68c-4c58-bca6-991eec7377d1",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-09-28",
+      "start": "11:59",
+      "end": "12:39"
+    },
+    {
+      "id": "22e00f61-21b0-4a36-a375-305ea1c8517a",
+      "taskId": "8c7d41ed-136b-4eb7-8f60-43f9ea5e0152",
+      "date": "2026-09-28",
+      "start": "12:39",
+      "end": "13:30"
+    },
+    {
+      "id": "a0e4b5d6-d7e5-4358-b71c-bb7f31cb87ad",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-28",
+      "start": "13:30",
+      "end": "14:00"
+    },
+    {
+      "id": "18cc5565-5077-43d6-88f4-bf9a7796c029",
+      "taskId": "8c7d41ed-136b-4eb7-8f60-43f9ea5e0152",
+      "date": "2026-09-28",
+      "start": "14:00",
+      "end": "19:11"
+    },
+    {
+      "id": "cbd9d114-1344-47df-bed8-119b08b9bc8f",
+      "taskId": "aae66170-1b5c-4403-a993-11d537d573fd",
+      "date": "2026-09-29",
+      "start": "09:00",
+      "end": "12:15"
+    },
+    {
+      "id": "174be69b-3a0c-418e-a676-bd20651f0be7",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-09-29",
+      "start": "12:15",
+      "end": "17:39"
+    },
+    {
+      "id": "e1402849-125c-4e30-97c9-c791b93dcfd4",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-09-30",
+      "start": "09:56",
+      "end": "18:50"
+    },
+    {
+      "id": "88c596a9-9d0b-40f4-a00f-5c26d1920b50",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-10-01",
+      "start": "09:39",
+      "end": "11:30"
+    },
+    {
+      "id": "af586f0e-a807-4295-aaeb-888a9e135d5a",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-10-01",
+      "start": "11:30",
+      "end": "12:15"
+    },
+    {
+      "id": "39a7048c-6643-466d-b86e-370a0284343c",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-10-01",
+      "start": "12:15",
+      "end": "18:34"
+    },
+    {
+      "id": "e6dd8852-9def-41d8-8472-ffc70eaa86ae",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-10-02",
+      "start": "09:00",
+      "end": "09:03"
+    },
+    {
+      "id": "efd58f14-fea2-4920-ae25-7686ac2ce7ed",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-10-02",
+      "start": "09:19",
+      "end": "18:42"
+    },
+    {
+      "id": "88e1aba3-c03b-49b0-a155-edbe86009f26",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-10-05",
+      "start": "09:37",
+      "end": "17:21"
+    },
+    {
+      "id": "8d49413b-2985-4f2c-8526-852f9a50217a",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-10-06",
+      "start": "09:38",
+      "end": "18:10"
+    },
+    {
+      "id": "dbd0a5bc-0ad0-411f-9968-a86a2d26c578",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-10-07",
+      "start": "08:57",
+      "end": "17:58"
+    },
+    {
+      "id": "268831c5-6964-4732-be87-cd6fd26faee8",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-10-08",
+      "start": "09:44",
+      "end": "18:10"
+    },
+    {
+      "id": "0bc5ed37-debe-4407-b380-7ea4ca6d98ab",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-10-09",
+      "start": "09:10",
+      "end": "11:40"
+    },
+    {
+      "id": "050b60a7-a52f-48e2-9719-9ffb750c05de",
+      "taskId": "797dd186-d6b9-4a28-b256-14e79e0fe107",
+      "date": "2026-10-09",
+      "start": "11:40",
+      "end": "13:03"
+    },
+    {
+      "id": "795502ee-6165-46fe-87f6-8e0d82773587",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-10-09",
+      "start": "13:03",
+      "end": "14:22"
+    },
+    {
+      "id": "d514096a-781d-4836-80f5-1461997da5d1",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-10-09",
+      "start": "14:59",
+      "end": "19:15"
+    },
+    {
+      "id": "2664dd47-9c2b-4085-8b38-2a78262a92aa",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-10-12",
+      "start": "09:14",
+      "end": "18:18"
+    },
+    {
+      "id": "ccdb1db1-a691-44e2-a46a-5a16814337d4",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-10-13",
+      "start": "09:36",
+      "end": "15:50"
+    },
+    {
+      "id": "28a54770-d079-4b9b-af8f-5ab5a05496b9",
+      "taskId": "083c2e6a-d926-4e3c-b77f-132effd7c2cb",
+      "date": "2026-10-13",
+      "start": "16:22",
+      "end": "18:53"
+    }
+  ],
+  "dailyWorkTimes": [
+    {
+      "id": "52972a69-f9f9-418f-8651-3f9057f220c6",
+      "date": "2026-08-21",
+      "minutes": 480,
+      "breakMinutes": 30
+    },
+    {
+      "id": "37deec65-090f-4b89-981f-a5618afd0d53",
+      "date": "2026-08-24",
+      "minutes": 480
+    },
+    {
+      "id": "ef51a97c-86e9-4d05-9992-aace9d86bedc",
+      "date": "2026-08-25",
+      "minutes": 480
+    },
+    {
+      "id": "a0f7e0a8-7693-471c-9bed-67935064ca8f",
+      "date": "2026-08-26",
+      "minutes": 480,
+      "breakMinutes": 45
+    },
+    {
+      "id": "0531a2a2-c6ab-4f17-8146-9eb873ddec5e",
+      "date": "2026-08-27",
+      "minutes": 480
+    },
+    {
+      "id": "392cbae4-31aa-4d10-8acf-3cb56b462e16",
+      "date": "2026-08-28",
+      "minutes": 480
+    },
+    {
+      "id": "adb50693-6ca5-4919-9f6d-dae53824d599",
+      "date": "2026-08-31",
+      "minutes": 480,
+      "breakMinutes": 45
+    },
+    {
+      "id": "c3cef985-9e46-43f9-bcb4-879b1a76c97d",
+      "date": "2026-09-01",
+      "minutes": 480
+    },
+    {
+      "id": "ab023f1e-64dc-4fac-84fd-91008829e168",
+      "date": "2026-09-02",
+      "minutes": 480
+    },
+    {
+      "id": "3e40a8a3-d0b9-458a-9528-189a49f6353e",
+      "date": "2026-09-03",
+      "minutes": 480,
+      "breakMinutes": 45
+    },
+    {
+      "id": "4e6f6060-4439-48bd-bd4d-e48e3a0b7877",
+      "date": "2026-09-04",
+      "minutes": 480
+    },
+    {
+      "id": "e2d7c272-2863-4a1b-91f4-19ffeba1e86c",
+      "date": "2026-09-07",
+      "minutes": 480
+    },
+    {
+      "id": "99b6f7c7-a0a3-421e-ba9f-de119e3a0a6e",
+      "date": "2026-09-08",
+      "minutes": 480
+    },
+    {
+      "id": "4e9ea630-6ba8-4cc2-9a5c-a7fe93792b34",
+      "date": "2026-09-09",
+      "minutes": 480
+    },
+    {
+      "id": "1c41ff93-3bfb-4f03-bf71-06f925e3d220",
+      "date": "2026-09-10",
+      "minutes": 480
+    },
+    {
+      "id": "5fccbc72-3061-4bdd-b168-af038567ee80",
+      "date": "2026-09-11",
+      "minutes": 480
+    },
+    {
+      "id": "1ed2ab18-7643-43e6-bee2-162a4aa39381",
+      "date": "2026-09-14",
+      "minutes": 480
+    },
+    {
+      "id": "120ba8a3-e390-4464-b143-9cb257d299ef",
+      "date": "2026-09-16",
+      "minutes": 480
+    },
+    {
+      "id": "7e9c8884-e2ee-4c2f-8ccc-2aabc00eb481",
+      "date": "2026-09-15",
+      "minutes": 480
+    },
+    {
+      "id": "1cfd6316-f88a-4f2b-945b-4cee2e28df47",
+      "date": "2026-09-17",
+      "minutes": 480
+    },
+    {
+      "id": "a773836d-8121-4409-be9b-4e997e66b6c3",
+      "date": "2026-09-18",
+      "minutes": 480,
+      "breakMinutes": 45
+    },
+    {
+      "id": "76d367f5-687a-4606-b4ba-27f972d2fdac",
+      "date": "2026-09-21",
+      "minutes": 480
+    },
+    {
+      "id": "62c3720e-d210-4b3a-8465-c5db080dce97",
+      "date": "2026-09-23",
+      "minutes": 480
+    },
+    {
+      "id": "00643699-7255-446d-bd74-506c3b88da9e",
+      "date": "2026-09-24",
+      "minutes": 480
+    },
+    {
+      "id": "7bbcd420-67ab-4ff5-8476-3ff5ba940f66",
+      "date": "2026-09-25",
+      "minutes": 480,
+      "breakMinutes": 30
+    },
+    {
+      "id": "7b0d6332-2e28-41be-b0c5-8786cbed2890",
+      "date": "2026-09-28",
+      "minutes": 480
+    },
+    {
+      "id": "976bc573-7728-44e3-9ccf-9e7b63b824aa",
+      "date": "2026-09-29",
+      "minutes": 480
+    },
+    {
+      "id": "8a2b4fb6-db9c-4a9e-8ff8-d3611360a5d1",
+      "date": "2026-09-30",
+      "minutes": 480,
+      "breakMinutes": 45
+    },
+    {
+      "id": "050b599e-9a9f-43e3-aeb9-654f2ea29e89",
+      "date": "2026-10-01",
+      "minutes": 480
+    },
+    {
+      "id": "cc9b6033-54f5-4a76-b834-77f764f8cbbe",
+      "date": "2026-10-02",
+      "minutes": 480,
+      "breakMinutes": 55
+    },
+    {
+      "id": "8d052f0a-85a9-45a6-a7e6-7b1983bc31a0",
+      "date": "2026-10-05",
+      "minutes": 480,
+      "breakMinutes": 45
+    },
+    {
+      "id": "d23ec1fb-68c8-4e76-a2ae-e7d584b9342a",
+      "date": "2026-10-06",
+      "minutes": 0,
+      "breakMinutes": 45
+    },
+    {
+      "id": "054cd6de-56a3-474e-97e8-a1eb5142083c",
+      "date": "2026-10-07",
+      "minutes": 480,
+      "breakMinutes": 45
+    },
+    {
+      "id": "8e528649-c128-49d4-9acd-46998603d1c7",
+      "date": "2026-10-08",
+      "minutes": 480,
+      "breakMinutes": 45
+    },
+    {
+      "id": "a4f65681-f8cf-4976-b9e6-16cda4609639",
+      "date": "2026-10-09",
+      "minutes": 480
+    },
+    {
+      "id": "f92262ec-3543-42b8-97ec-f6ef994ca8cc",
+      "date": "2026-10-12",
+      "minutes": 480,
+      "breakMinutes": 60
+    },
+    {
+      "id": "d3e6a9ff-464c-432a-93c4-92d185dbbf26",
+      "date": "2026-10-13",
+      "minutes": 480,
+      "breakMinutes": 45
+    }
+  ]
+}

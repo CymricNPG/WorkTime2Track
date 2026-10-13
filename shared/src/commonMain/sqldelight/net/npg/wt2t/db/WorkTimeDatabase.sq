@@ -1,0 +1,187 @@
+-- Tables
+
+CREATE TABLE projectEntity (
+    id TEXT NOT NULL PRIMARY KEY CHECK (trim(id) != ''),
+    name TEXT NOT NULL CHECK (trim(name) != ''),
+    closed INTEGER AS kotlin.Boolean NOT NULL DEFAULT 0
+);
+
+CREATE UNIQUE INDEX idx_project_name ON projectEntity(name);
+
+CREATE TABLE taskEntity (
+    id TEXT NOT NULL PRIMARY KEY CHECK (trim(id) != ''),
+    name TEXT NOT NULL CHECK (trim(name) != ''),
+    freeTime INTEGER AS kotlin.Boolean NOT NULL DEFAULT 0,
+    closed INTEGER AS kotlin.Boolean NOT NULL DEFAULT 0,
+    projectId TEXT,
+    FOREIGN KEY (projectId) REFERENCES projectEntity(id)
+);
+
+CREATE UNIQUE INDEX idx_task_name_project
+ON taskEntity(name, projectId)
+WHERE projectId IS NOT NULL;
+
+CREATE UNIQUE INDEX idx_task_name_without_project
+ON taskEntity(name)
+WHERE projectId IS NULL;
+
+CREATE TABLE timeEntity (
+    id TEXT NOT NULL PRIMARY KEY CHECK (trim(id) != ''),
+    taskId TEXT NOT NULL,
+    date TEXT NOT NULL, -- LocalDate as ISO string
+    start TEXT NOT NULL, -- LocalTime as ISO string
+    end TEXT, -- LocalTime as ISO string
+    description TEXT NOT NULL, -- List<String> as JSON or comma-separated
+    FOREIGN KEY (taskId) REFERENCES taskEntity(id),
+    CHECK (end IS NULL OR start <= end)
+);
+
+CREATE INDEX idx_time_date ON timeEntity(date);
+
+CREATE UNIQUE INDEX idx_active_time_date
+ON timeEntity(date)
+WHERE end IS NULL;
+
+CREATE TABLE dailyWorkTimeEntity (
+    id TEXT NOT NULL PRIMARY KEY CHECK (trim(id) != ''),
+    date TEXT NOT NULL, -- LocalDate as ISO string
+    minutes INTEGER NOT NULL CHECK (minutes BETWEEN 0 AND 1440),
+    breakMinutes INTEGER NOT NULL DEFAULT 0 CHECK (breakMinutes >= 0)
+);
+
+CREATE UNIQUE INDEX idx_daily_work_time_date ON dailyWorkTimeEntity(date);
+
+CREATE TABLE configEntity (
+    key TEXT NOT NULL PRIMARY KEY,
+    value TEXT NOT NULL
+);
+
+-- Delete all
+
+deleteAllProjects:
+DELETE FROM projectEntity;
+
+deleteAllTasks:
+DELETE FROM taskEntity;
+
+deleteAllTimes:
+DELETE FROM timeEntity;
+
+deleteAllDailyWorkTimes:
+DELETE FROM dailyWorkTimeEntity;
+
+deleteAllConfigs:
+DELETE FROM configEntity;
+
+-- Config Queries
+selectConfig:
+SELECT value FROM configEntity WHERE key = ?;
+
+selectAllConfigs:
+SELECT * FROM configEntity;
+
+insertConfig:
+INSERT OR REPLACE INTO configEntity(key, value)
+VALUES (?, ?);
+
+-- Project Queries
+selectAllProjects:
+SELECT * FROM projectEntity;
+
+selectProjectById:
+SELECT * FROM projectEntity WHERE id = ?;
+
+insertProject:
+INSERT INTO projectEntity(id, name, closed)
+VALUES (?, ?, ?);
+
+updateProject:
+UPDATE projectEntity
+SET name = ?, closed = ?
+WHERE id = ?;
+
+deleteProject:
+DELETE FROM projectEntity WHERE id = ?;
+
+-- Task Queries
+selectAllTasks:
+SELECT * FROM taskEntity;
+
+selectTaskById:
+SELECT * FROM taskEntity WHERE id = ?;
+
+selectTasksByProject:
+SELECT * FROM taskEntity WHERE projectId = ?;
+
+selectTasksWithoutProject:
+SELECT * FROM taskEntity WHERE projectId IS NULL;
+
+insertTask:
+INSERT INTO taskEntity(id, name, freeTime, closed, projectId)
+VALUES (?, ?, ?, ?, ?);
+
+updateTask:
+UPDATE taskEntity
+SET name = ?, freeTime = ?, closed = ?, projectId = ?
+WHERE id = ?;
+
+deleteTask:
+DELETE FROM taskEntity WHERE id = ?;
+
+-- Time Queries
+selectTimesByDate:
+SELECT * FROM timeEntity WHERE date = ?;
+
+selectTimeById:
+SELECT * FROM timeEntity WHERE id = ?;
+
+selectActiveTimeByDate:
+SELECT * FROM timeEntity WHERE date = ? AND end IS NULL;
+
+selectLatestFinishedTimeByDate:
+SELECT * FROM timeEntity
+WHERE date = ? AND end IS NOT NULL
+ORDER BY end DESC
+LIMIT 1;
+
+selectPreviousFinishedTimeIdByDate:
+SELECT id FROM timeEntity
+WHERE date = ? AND end IS NOT NULL AND end <= ?
+ORDER BY end DESC
+LIMIT 1;
+
+selectAllTimes:
+SELECT * FROM timeEntity;
+
+insertTime:
+INSERT INTO timeEntity(id, taskId, date, start, end, description)
+VALUES (?, ?, ?, ?, ?, ?);
+
+updateTime:
+UPDATE timeEntity
+SET taskId = ?, date = ?, start = ?, end = ?, description = ?
+WHERE id = ?;
+
+deleteTime:
+DELETE FROM timeEntity WHERE id = ?;
+
+deleteTimesByDate:
+DELETE FROM timeEntity WHERE date = ?;
+
+-- DailyWorkTime Queries
+selectDailyWorkTimeByDate:
+SELECT * FROM dailyWorkTimeEntity WHERE date = ?;
+
+selectAllDailyWorkTimes:
+SELECT * FROM dailyWorkTimeEntity;
+
+insertDailyWorkTime:
+INSERT OR REPLACE INTO dailyWorkTimeEntity(id, date, minutes, breakMinutes)
+VALUES (?, ?, ?, ?);
+
+insertNewDailyWorkTime:
+INSERT INTO dailyWorkTimeEntity(id, date, minutes, breakMinutes)
+VALUES (?, ?, ?, ?);
+
+deleteDailyWorkTimeByDate:
+DELETE FROM dailyWorkTimeEntity WHERE date = ?;

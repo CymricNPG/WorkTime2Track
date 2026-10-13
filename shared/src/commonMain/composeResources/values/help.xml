@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="help_quickstart_intro">Wähle ein Thema. Fett markierte Wörter bezeichnen Elemente in der App.</string>
+    <string name="help_expanded">Aufgeklappt</string>
+    <string name="help_collapsed">Zugeklappt</string>
+    <string name="help_tasks_title">Tasks anlegen</string>
+    <string name="help_tasks_step_1">Öffne „%1$s“ über das Blatt-mit-Plus-Symbol oben im Buchungsbildschirm.</string>
+    <string name="help_tasks_step_2">Wähle ein Projekt oder „%1$s“. Für ein neues Projekt wähle zuerst das „Plus-Symbol“, gib einen Namen ein und wähle „%2$s“. Öffne danach das Projekt.</string>
+    <string name="help_tasks_step_3">Wähle in der Taskliste das „Plus-Symbol“. Gib unter „%1$s“ einen Namen ein.</string>
+    <string name="help_tasks_step_4">Wähle „%1$s“. Kehre mit dem „Zurück-Pfeil“ zum Buchungsbildschirm zurück. Dort kannst du den Task starten.</string>
+    <string name="help_tasks_hint">Hinweis: „%1$s“ zählt nicht zur Arbeitszeit. Tasks mit „%2$s“ und Tasks geschlossener Projekte erscheinen nicht in der Buchungsliste.</string>
+    <string name="help_booking_title">Zeiten buchen</string>
+    <string name="help_booking_step_1">Wähle im Buchungsbildschirm einen Task. Die Zeitmessung startet. Oben siehst du den laufenden Task und seine Startzeit.</string>
+    <string name="help_booking_step_2">Wähle einen anderen Task, um zu wechseln. Die App beendet die bisherige Buchung und startet die neue.</string>
+    <string name="help_booking_step_3">Wähle „%1$s“, um die Buchung zu beenden. Um später weiterzubuchen, wähle wieder einen Task.</string>
+    <string name="help_booking_step_4">Für eine Notiz schreibe in „%1$s“ und wähle „%2$s“ über das Senden-Symbol.</string>
+    <string name="help_booking_step_5">Mit den „Minus-/Plus-Schaltflächen“ neben der Startzeit kannst du den Beginn verschieben. Die Änderung wird sofort gespeichert und kann auch das Ende der vorherigen Buchung verschieben.</string>
+    <string name="help_booking_hint">Hinweis: Je nach Einstellung schließt die App kleine Lücken zwischen Buchungen automatisch. Prüfe die Startzeit, wenn du nach einer Unterbrechung weiterbuchst.</string>
+    <string name="help_end_day_title">Tag abschließen</string>
+    <string name="help_end_day_step_1">Öffne „%1$s“ über das Haus-Symbol unten rechts im Buchungsbildschirm.</string>
+    <string name="help_end_day_step_2">Prüfe die Tagesübersicht. Gib unter „%1$s“ ein, wie lange du an diesem Tag arbeiten solltest.</string>
+    <string name="help_end_day_step_3">Prüfe „%1$s“ und passe die Pausenzeit bei Bedarf an.</string>
+    <string name="help_end_day_step_4">Wähle „%1$s“. Erst dann wird die laufende Buchung beendet und der Tag gespeichert.</string>
+    <string name="help_end_day_hint">Hinweis: Für heute muss bereits eine Buchung vorhanden sein. Du kannst auch nach dem Abschluss am selben Tag weitere Zeiten buchen.</string>
+    <string name="help_edit_day_title">Tag ändern</string>
+    <string name="help_edit_day_step_1">Öffne die „%1$s“ über das Kalender-Symbol oben im Buchungsbildschirm.</string>
+    <string name="help_edit_day_step_2">Wähle über die Datumsfelder den passenden Zeitraum. Wähle danach den Tag aus der Liste.</string>
+    <string name="help_edit_day_step_3">Ändere bei einer Buchung den Task, die Start-/Endzeit oder die Beschreibung. Über das „Plus-Symbol“ beim Tagesdatum fügst du eine Buchung hinzu.</string>
+    <string name="help_edit_day_step_4">Passe bei Bedarf „%1$s“ und „%2$s“ an.</string>
+    <string name="help_edit_day_step_5">Wähle „%1$s“, um deine Änderungen zu übernehmen. Mit „%2$s“ setzt du ungespeicherte Änderungen zurück.</string>
+    <string name="help_edit_day_hint">Hinweis: Speichere deine Änderungen vor dem Zurückgehen. Ungültige oder überlappende Zeiten verhindern das Speichern. Prüfe dann die Meldung und korrigiere die Eingaben.</string>
+</resources>
