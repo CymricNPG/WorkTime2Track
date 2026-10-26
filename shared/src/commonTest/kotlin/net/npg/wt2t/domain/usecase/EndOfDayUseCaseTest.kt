@@ -12,8 +12,41 @@ import kotlin.test.assertFails
 import kotlin.test.assertFailsWith
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.hours
 
 class EndOfDayUseCaseTest {
+
+    @Test
+    fun `worked time includes open work and excludes free time from supplied snapshot`() = runTest {
+        IntegrationTestEnvironment.create().use { environment ->
+            val inputDate = LocalDate(2023, 10, 27)
+            val workTask = environment.createTask("Work")
+            val freeTimeTask = environment.createTask("Free time", freeTime = true)
+            val closedWork = environment.createTime(workTask, inputDate, LocalTime(8, 0), LocalTime(9, 0))
+            val freeTime = environment.createTime(freeTimeTask, inputDate, LocalTime(9, 0), LocalTime(10, 0))
+            val openWork = environment.createTime(workTask, inputDate, LocalTime(10, 0))
+            val inputTimes = listOf(openWork, freeTime, closedWork)
+            environment.timeRepository.saveTime(openWork.copy(end = LocalTime(11, 0)))
+
+            val actualWorkedTime = environment.endOfDayUseCase.getWorkedTime(inputTimes, LocalTime(12, 0))
+
+            assertEquals(3.hours, actualWorkedTime)
+        }
+    }
+
+    @Test
+    fun `open free time contributes no worked time`() = runTest {
+        IntegrationTestEnvironment.create().use { environment ->
+            val inputDate = LocalDate(2023, 10, 27)
+            val inputTask = environment.createTask("Free time", freeTime = true)
+            val inputTime = environment.createTime(inputTask, inputDate, LocalTime(9, 0))
+
+            val actualWorkedTime = environment.endOfDayUseCase.getWorkedTime(listOf(inputTime), LocalTime(12, 0))
+
+            assertEquals(Duration.ZERO, actualWorkedTime)
+        }
+    }
 
     @Test
     fun `configured target is loaded when day has no persisted value`() = runTest {
@@ -89,6 +122,27 @@ class EndOfDayUseCaseTest {
             assertEquals(420, actualDailyWorkTime.minutes)
             assertEquals(45, actualDailyWorkTime.breakMinutes)
             assertEquals(actualDailyWorkTime, environment.dailyWorkTimeRepository.getDailyWorkTime(inputDate).first())
+        }
+    }
+
+    @Test
+    fun `completion before active booking start saves a zero-minute booking`() = runTest {
+        IntegrationTestEnvironment.create().use { environment ->
+            val inputDate = LocalDate(2023, 10, 27)
+            val inputTask = environment.createTask("Tracked task")
+            environment.createTime(inputTask, inputDate, LocalTime(16, 0))
+
+            environment.endOfDayUseCase.complete(
+                date = inputDate,
+                endTime = LocalTime(8, 0),
+                targetMinutes = 420,
+                breakMinutes = 30,
+            )
+
+            val actualTime = environment.timeRepository.getTimesForDate(inputDate).first().single()
+            assertEquals(LocalTime(16, 0), actualTime.end)
+            assertEquals(inputDate, actualTime.date)
+            assertNotNull(environment.dailyWorkTimeRepository.getDailyWorkTime(inputDate).first())
         }
     }
 

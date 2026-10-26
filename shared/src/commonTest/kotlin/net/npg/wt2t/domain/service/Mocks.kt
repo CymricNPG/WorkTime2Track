@@ -9,6 +9,7 @@ import net.npg.wt2t.data.model.BookingAdjustmentDirection
 import net.npg.wt2t.data.model.Project
 import net.npg.wt2t.data.model.Task
 import net.npg.wt2t.data.model.Time
+import net.npg.wt2t.data.model.atMinutePrecision
 import net.npg.wt2t.data.repository.*
 
 class MockProjectRepository : ProjectRepository {
@@ -158,8 +159,7 @@ class MockDayRepository(
         check(dateTimes.isNotEmpty()) { "End of day requires at least one booking on $date." }
         val activeTime = dateTimes.find { it.end == null }
         if (activeTime != null) {
-            require(endTime >= activeTime.start)
-            timeRepository.saveTime(activeTime.copy(end = endTime))
+            timeRepository.saveTime(activeTime.copy(end = maxOf(endTime.atMinutePrecision(), activeTime.start)))
         }
         val dailyWorkTime = dailyWorkTimeRepository.dailyWorkTimes.value
             .find { it.date == date }

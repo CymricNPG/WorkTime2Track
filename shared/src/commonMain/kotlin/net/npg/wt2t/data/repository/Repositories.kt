@@ -107,9 +107,10 @@ interface DayRepository {
 
     /**
      * Atomically closes the active booking and stores the daily values for [date].
+     * The end time is reduced to minute precision and clamped to the booking's start,
+     * so completing a day after midnight cannot create a negative duration.
      *
      * @throws IllegalStateException when the date has no bookings.
-     * @throws IllegalArgumentException when [endTime] is not after the active booking's start.
      */
     suspend fun completeDay(
         date: LocalDate,

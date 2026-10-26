@@ -27,11 +27,15 @@ class EndOfDayUseCase(
 ) {
     fun getTimesForDate(date: LocalDate): Flow<List<Time>> = timeRepository.getTimesForDate(date)
 
-    suspend fun getWorkedTime(date: LocalDate): Duration {
+    /** Calculates worked time using [previewTime] for open bookings, never ending before their start. */
+    suspend fun getWorkedTime(times: List<Time>, previewTime: LocalTime): Duration {
         val tasks = taskRepository.getAllTasks().first().associateBy { it.id }
-        return timeRepository.getTimesForDate(date).first()
+        return times
             .filter { !tasks[it.taskId].orFreeTime() }
-            .sumOf { ((it.end ?: it.start).toSecondOfDay() - it.start.toSecondOfDay()).div(60).toLong() }
+            .sumOf {
+                val effectiveEnd = it.end ?: maxOf(previewTime, it.start)
+                (effectiveEnd.toSecondOfDay() - it.start.toSecondOfDay()).div(60).toLong()
+            }
             .minutes
     }
 

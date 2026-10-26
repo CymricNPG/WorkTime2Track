@@ -1,5 +1,6 @@
 package net.npg.wt2t.ui.viewmodel
 
+import androidx.lifecycle.ViewModelStore
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -11,8 +12,10 @@ import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import kotlinx.datetime.LocalDate
+import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
 import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDateTime
 import net.npg.wt2t.data.model.AppSettings
 import net.npg.wt2t.data.model.DailyWorkTime
@@ -21,7 +24,6 @@ import net.npg.wt2t.data.repository.DayRepository
 import net.npg.wt2t.domain.service.MockConfigRepository
 import net.npg.wt2t.domain.service.MockDailyWorkTimeRepository
 import net.npg.wt2t.domain.service.MockDayRepository
-import net.npg.wt2t.domain.service.MockProjectRepository
 import net.npg.wt2t.domain.service.MockTaskRepository
 import net.npg.wt2t.domain.service.MockTimeRepository
 import net.npg.wt2t.domain.usecase.EndOfDayUseCase
@@ -31,8 +33,13 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import kotlin.time.Clock
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.hours
+import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Duration.Companion.seconds
 import kotlin.time.Instant
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -48,6 +55,120 @@ class EndOfDayViewModelTest {
     @AfterTest
     fun tearDown() {
         Dispatchers.resetMain()
+    }
+
+    @Test
+    fun `open booking preview uses opening time while save uses fresh time`() = runTest(testDispatcher.scheduler) {
+        val testContext = createTestContext()
+        testContext.addBooking()
+        testContext.clock.instant += 45.seconds
+        val viewModel = testContext.createViewModel()
+        testContext.clock.instant += 5.minutes
+        advanceUntilIdle()
+
+        assertEquals(LocalTime(9, 0), viewModel.uiState.value.firstBooking)
+        assertEquals(LocalTime(12, 0), viewModel.uiState.value.lastBooking)
+        assertEquals(3.hours, viewModel.uiState.value.workedTime)
+        assertNull(testContext.timeRepository.times.value.single().end)
+
+        // A repository emission must not move the opening-time snapshot forward.
+        testContext.timeRepository.times.value = testContext.timeRepository.times.value.map {
+            it.copy(description = listOf("Updated note"))
+        }
+        advanceUntilIdle()
+        assertEquals(LocalTime(12, 0), viewModel.uiState.value.lastBooking)
+        assertEquals(3.hours, viewModel.uiState.value.workedTime)
+
+        viewModel.saveAndEndDay()
+        advanceUntilIdle()
+
+        assertTrue(viewModel.uiState.value.isSaved)
+        assertEquals(LocalTime(12, 5), testContext.timeRepository.times.value.single().end)
+    }
+
+    @Test
+    fun `saving after midnight clamps end to start and retains booking date`() = runTest(testDispatcher.scheduler) {
+        val testContext = createTestContext()
+        testContext.addBooking()
+        val viewModel = testContext.createViewModel()
+        advanceUntilIdle()
+        testContext.clock.instant = LocalDateTime(2023, 10, 28, 8, 0)
+            .toInstant(TimeZone.currentSystemDefault())
+
+        viewModel.saveAndEndDay()
+        advanceUntilIdle()
+
+        assertTrue(viewModel.uiState.value.isSaved)
+        val actualBooking = testContext.timeRepository.times.value.single()
+        assertEquals(testContext.date, actualBooking.date)
+        assertEquals(actualBooking.start, actualBooking.end)
+        assertEquals(testContext.date, testContext.dailyWorkTimeRepository.dailyWorkTimes.value.single().date)
+    }
+
+    @Test
+    fun `preview before booking start has zero duration`() = runTest(testDispatcher.scheduler) {
+        val testContext = createTestContext()
+        testContext.addBooking()
+        testContext.clock.instant -= 4.hours
+
+        val viewModel = testContext.createViewModel()
+        advanceUntilIdle()
+
+        assertEquals(LocalTime(9, 0), viewModel.uiState.value.lastBooking)
+        assertEquals(Duration.ZERO, viewModel.uiState.value.workedTime)
+        assertNull(testContext.timeRepository.times.value.single().end)
+    }
+
+    @Test
+    fun `leaving without save keeps booking open and reopening refreshes preview`() = runTest(testDispatcher.scheduler) {
+        val testContext = createTestContext()
+        testContext.addBooking()
+        val viewModelStore = ViewModelStore()
+        val firstViewModel = testContext.createViewModel()
+        viewModelStore.put("end-of-day", firstViewModel)
+        advanceUntilIdle()
+
+        viewModelStore.clear()
+        testContext.clock.instant += 5.minutes
+        val reopenedViewModel = testContext.createViewModel()
+        advanceUntilIdle()
+
+        assertNull(testContext.timeRepository.times.value.single().end)
+        assertTrue(testContext.dailyWorkTimeRepository.dailyWorkTimes.value.isEmpty())
+        assertEquals(LocalTime(12, 5), reopenedViewModel.uiState.value.lastBooking)
+        assertEquals(185.minutes, reopenedViewModel.uiState.value.workedTime)
+    }
+
+    @Test
+    fun `opening next day does not select previous days open booking`() = runTest(testDispatcher.scheduler) {
+        val testContext = createTestContext()
+        testContext.addBooking()
+        testContext.clock.instant = LocalDateTime(2023, 10, 28, 8, 0)
+            .toInstant(TimeZone.currentSystemDefault())
+
+        val viewModel = testContext.createViewModel()
+        advanceUntilIdle()
+
+        assertEquals(LocalDate(2023, 10, 28), viewModel.uiState.value.date)
+        assertNull(viewModel.uiState.value.firstBooking)
+        assertNull(viewModel.uiState.value.lastBooking)
+        assertEquals(Duration.ZERO, viewModel.uiState.value.workedTime)
+        assertNull(testContext.timeRepository.times.value.single().end)
+    }
+
+    @Test
+    fun `closed booking summary uses recorded end instead of opening time`() = runTest(testDispatcher.scheduler) {
+        val testContext = createTestContext()
+        testContext.addBooking()
+        testContext.timeRepository.times.value = testContext.timeRepository.times.value.map {
+            it.copy(end = LocalTime(11, 0))
+        }
+
+        val viewModel = testContext.createViewModel()
+        advanceUntilIdle()
+
+        assertEquals(LocalTime(11, 0), viewModel.uiState.value.lastBooking)
+        assertEquals(2.hours, viewModel.uiState.value.workedTime)
     }
 
     @Test
@@ -145,7 +266,9 @@ class EndOfDayViewModelTest {
         completionFailure: Exception? = null,
         completionRelease: CompletableDeferred<Unit>? = null,
     ): EndOfDayViewModelTestContext {
-        val clock = FixedClock(Instant.parse("2023-10-27T12:00:00Z"))
+        val clock = EndOfDayTestClock(
+            LocalDateTime(2023, 10, 27, 12, 0).toInstant(TimeZone.currentSystemDefault()),
+        )
         val date = clock.now().toLocalDateTime(TimeZone.currentSystemDefault()).date
         val timeRepository = MockTimeRepository()
         val dailyWorkTimeRepository = MockDailyWorkTimeRepository()
@@ -167,15 +290,15 @@ class EndOfDayViewModelTest {
             configRepository = configRepository,
         )
     }
+}
 
-    private class FixedClock(private val instant: Instant) : Clock {
-        override fun now(): Instant = instant
-    }
+private class EndOfDayTestClock(var instant: Instant) : Clock {
+    override fun now(): Instant = instant
 }
 
 private data class EndOfDayViewModelTestContext(
     val date: LocalDate,
-    val clock: Clock,
+    val clock: EndOfDayTestClock,
     val timeRepository: MockTimeRepository,
     val dailyWorkTimeRepository: MockDailyWorkTimeRepository,
     val dayRepository: RecordingDayRepository,

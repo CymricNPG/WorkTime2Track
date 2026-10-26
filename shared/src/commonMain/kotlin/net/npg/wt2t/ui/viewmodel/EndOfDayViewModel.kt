@@ -41,7 +41,9 @@ class EndOfDayViewModel(
     private val endOfDayUseCase: EndOfDayUseCase,
     private val clock: Clock,
 ) : ViewModel() {
-    private val date = clock.now().toLocalDateTime(TimeZone.currentSystemDefault()).date
+    private val openedAt = clock.now().toLocalDateTime(TimeZone.currentSystemDefault())
+    private val date = openedAt.date
+    private val previewTime = openedAt.time.atMinutePrecision()
     private val _uiState = MutableStateFlow(EndOfDayUiState(date = date))
     val uiState: StateFlow<EndOfDayUiState> = _uiState.asStateFlow()
 
@@ -121,14 +123,13 @@ class EndOfDayViewModel(
                 }
                 endOfDayUseCase.getTimesForDate(date).collect { times ->
                     val firstBooking = times.minByOrNull { it.start }?.start
-                    val lastBooking = times
-                        .maxByOrNull { it.end ?: it.start }
-                        ?.let { it.end ?: it.start }
+                    val lastBooking = times.maxOfOrNull { it.end ?: maxOf(previewTime, it.start) }
+                    val workedTime = endOfDayUseCase.getWorkedTime(times, previewTime)
                     _uiState.update {
                         it.copy(
                             firstBooking = firstBooking,
                             lastBooking = lastBooking,
-                            workedTime = endOfDayUseCase.getWorkedTime(date),
+                            workedTime = workedTime,
                         )
                     }
                 }

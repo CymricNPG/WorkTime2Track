@@ -506,14 +506,12 @@ class SqlDelightDayRepository(
                 .executeAsOneOrNull()
                 ?.toModel()
             if (activeTime != null) {
-                require(minuteEndTime >= activeTime.start) {
-                    "Booking end $minuteEndTime must not precede start ${activeTime.start} on $date"
-                }
+                val effectiveEndTime = maxOf(minuteEndTime, activeTime.start)
                 queries.updateTime(
                     taskId = activeTime.taskId,
                     date = dateText,
                     start = activeTime.start.toString(),
-                    end = minuteEndTime.toString(),
+                    end = effectiveEndTime.toString(),
                     description = Json.encodeToString(activeTime.description),
                     id = activeTime.id,
                 )
